@@ -1,0 +1,18 @@
+<html>
+<head>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/3.0.0/fetch.min.js"></script>
+	<link href="https://vjs.zencdn.net/7.2.1/video-js.css" rel="stylesheet">
+	<script src="https://vjs.zencdn.net/7.2.1/video.js"></script>
+</head>
+
+<body>
+	<video id="video" class="video-js" controls preload="auto" width="640" height="264"></video>
+	<script type="text/javascript">
+		fetch('/sample.mp4')
+			.then(res => res.blob())
+			.then(blob => URL.createObjectURL(blob))
+			.then(url => videojs('#video', { controls: true, sources: [{ type: 'video/mp4', src: url }] }))
+			.catch(console.error)
+	</script>
+</body>
+</html>
